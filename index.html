@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>봄동 겉절이 커뮤니티</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+
+    /* Header / Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e8e8e8;
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #2e7d32;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      font-size: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #555;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2e7d32;
+    }
+
+    .nav-cta {
+      background: #2e7d32;
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 24px;
+      font-weight: 600 !important;
+    }
+
+    .nav-cta:hover {
+      background: #1b5e20 !important;
+      color: #fff !important;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 50%, #fff8e1 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 70%, rgba(76, 175, 80, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(139, 195, 74, 0.08) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(46, 125, 50, 0.1);
+      color: #2e7d32;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+    }
+
+    .hero h1 span {
+      color: #2e7d32;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #666;
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #2e7d32;
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 28px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: #1b5e20;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: #2e7d32;
+      padding: 14px 36px;
+      border-radius: 28px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      border: 2px solid #2e7d32;
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: #e8f5e9;
+      transform: translateY(-1px);
+    }
+
+    /* Stats */
+    .stats {
+      padding: 48px 24px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+
+    .stats-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #2e7d32;
+    }
+
+    .stat-item p {
+      color: #888;
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    /* Features */
+    .features {
+      padding: 80px 24px;
+      background: #fafafa;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 56px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+
+    .section-header p {
+      color: #888;
+      font-size: 1rem;
+    }
+
+    .features-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px 28px;
+      border: 1px solid #eee;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-card:nth-child(1) .feature-icon { background: #e8f5e9; }
+    .feature-card:nth-child(2) .feature-icon { background: #fff3e0; }
+    .feature-card:nth-child(3) .feature-icon { background: #e3f2fd; }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: #888;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* Popular Recipes */
+    .recipes {
+      padding: 80px 24px;
+      background: #fff;
+    }
+
+    .recipes-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .recipe-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #eee;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .recipe-thumb {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .recipe-card:nth-child(1) .recipe-thumb { background: #e8f5e9; }
+    .recipe-card:nth-child(2) .recipe-thumb { background: #fff8e1; }
+    .recipe-card:nth-child(3) .recipe-thumb { background: #fce4ec; }
+
+    .recipe-info {
+      padding: 20px;
+    }
+
+    .recipe-tag {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .recipe-info h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .recipe-meta {
+      display: flex;
+      gap: 16px;
+      color: #aaa;
+      font-size: 0.8rem;
+    }
+
+    /* Community CTA */
+    .community {
+      padding: 80px 24px;
+      background: linear-gradient(135deg, #2e7d32, #43a047);
+      text-align: center;
+      color: #fff;
+    }
+
+    .community h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .community p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .btn-white {
+      background: #fff;
+      color: #2e7d32;
+      padding: 14px 40px;
+      border-radius: 28px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Footer */
+    footer {
+      padding: 48px 24px;
+      background: #1a1a1a;
+      color: #aaa;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    footer .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* Mobile hamburger */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: #fff;
+        padding: 16px 24px;
+        gap: 16px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+
+      .stats-grid,
+      .features-grid,
+      .recipes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <a href="#" class="logo">
+        <span class="logo-icon">🥬</span>
+        봄동 겉절이
+      </a>
+      <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <ul class="nav-links">
+        <li><a href="#features">소개</a></li>
+        <li><a href="#recipes">인기 레시피</a></li>
+        <li><a href="#community">커뮤니티</a></li>
+        <li><a href="#join" class="nav-cta">가입하기</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">봄의 맛, 함께 나눠요</span>
+      <h1>봄동 겉절이를 사랑하는<br>사람들의 <span>커뮤니티</span></h1>
+      <p>
+        아삭한 봄동과 새콤달콤한 양념의 완벽한 조화.<br>
+        나만의 겉절이 레시피를 공유하고, 봄의 맛을 함께 즐겨보세요.
+      </p>
+      <div class="hero-buttons">
+        <a href="#join" class="btn-primary">커뮤니티 가입하기</a>
+        <a href="#recipes" class="btn-secondary">레시피 둘러보기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>1,240+</h3>
+        <p>커뮤니티 멤버</p>
+      </div>
+      <div class="stat-item">
+        <h3>580+</h3>
+        <p>공유된 레시피</p>
+      </div>
+      <div class="stat-item">
+        <h3>3,200+</h3>
+        <p>후기 & 댓글</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <h2>왜 봄동 겉절이 커뮤니티인가요?</h2>
+      <p>겉절이를 좋아하는 모든 분을 위한 공간입니다</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3>레시피 공유</h3>
+        <p>나만의 비법 레시피를 올리고, 다른 분들의 레시피도 구경해 보세요. 사진과 함께 단계별로 쉽게 공유할 수 있어요.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>실시간 소통</h3>
+        <p>겉절이 만들다 궁금한 점이 있으면 바로 질문하세요. 경험 많은 멤버들이 친절하게 답변해 드립니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>월간 챌린지</h3>
+        <p>매월 새로운 겉절이 테마 챌린지에 참여해 보세요. 창의적인 레시피로 커뮤니티 인기상을 받을 수 있어요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Recipes -->
+  <section class="recipes" id="recipes">
+    <div class="section-header">
+      <h2>이번 주 인기 레시피</h2>
+      <p>멤버들이 가장 많이 저장한 레시피를 확인하세요</p>
+    </div>
+    <div class="recipes-grid">
+      <div class="recipe-card">
+        <div class="recipe-thumb">🥬</div>
+        <div class="recipe-info">
+          <span class="recipe-tag">기본</span>
+          <h3>정통 봄동 겉절이</h3>
+          <div class="recipe-meta">
+            <span>⏱ 20분</span>
+            <span>❤️ 342</span>
+            <span>💬 58</span>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-thumb">🌶️</div>
+        <div class="recipe-info">
+          <span class="recipe-tag">매운맛</span>
+          <h3>청양고추 봄동 겉절이</h3>
+          <div class="recipe-meta">
+            <span>⏱ 15분</span>
+            <span>❤️ 287</span>
+            <span>💬 43</span>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-thumb">🍎</div>
+        <div class="recipe-info">
+          <span class="recipe-tag">상큼</span>
+          <h3>사과채 봄동 겉절이</h3>
+          <div class="recipe-meta">
+            <span>⏱ 25분</span>
+            <span>❤️ 215</span>
+            <span>💬 37</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community CTA -->
+  <section class="community" id="community">
+    <h2>지금 바로 함께하세요</h2>
+    <p>
+      봄동 겉절이를 사랑하는 분이라면 누구나 환영합니다.
+      레시피도 나누고, 봄의 맛에 대해 이야기해요.
+    </p>
+    <a href="#join" class="btn-white" id="join">무료로 가입하기</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <ul class="footer-links">
+      <li><a href="#">이용약관</a></li>
+      <li><a href="#">개인정보처리방침</a></li>
+      <li><a href="#">문의하기</a></li>
+    </ul>
+    <p>&copy; 2026 봄동 겉절이 커뮤니티. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
